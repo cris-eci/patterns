@@ -1,3 +1,8 @@
+## Integrantes
+ANDERSSON DAVID SÁNCHEZ MÉNDEZ
+
+CRISTIAN SANTIAGO PEDRAZA RODRÍGUEZ
+
 ## I. LA HERRAMIENTA MAVEN
 1. Cuál es su mayor utilidad
 
@@ -40,5 +45,73 @@ mvn archetype:generate -DgroupId=edu.eci.cvds -DartifactId=Patterns -DarchetypeA
 ```
 
 ![alt text](image.png)
-arquetipo 1.5
--Dpackage
+
+
+### COMPILAR Y EJECUTAR
+Para compilar ejecute el comando:
+```sh
+$ mvn package
+```
+
+Si maven no actualiza las dependencias utilice la opción `-U` así:
+```sh
+$ mvn -U package
+```
+![alt text](image-1.png)
+
+---
+
+Busque cuál es el objetivo del parámetro "package" y qué otros parámetros se podrían enviar al comando `mvn`.
+
+Busque cómo ejecutar desde línea de comandos, un proyecto maven y verifique la salida cuando se ejecuta con la clase `App.java` como parámetro en "mainClass". Tip: https://www.mojohaus.org/exec-maven-plugin/usage.html
+
+```yml
+        </plugin>
+          <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>edu.eci.cvds.patterns.archetype.App</mainClass>
+        </configuration>
+      </plugin>
+
+```
+* comando para compilar
+```yml
+mvn package
+```
+
+* comando para ejecutar
+```yml
+mvn exec:java
+```
+![alt text](image-2.png)
+
+Realice el cambio en la clase `App.java` para crear un saludo personalizado, basado en los parámetros de entrada a la aplicación. 
+
+Utilizar la primera posición del parámetro que llega al método "main" para realizar elsaludo personalizado, en caso que no sea posible, se debe mantener el saludo como se encuentra actualmente:
+
+Buscar cómo enviar parámetros al plugin "exec".
+
+
+
+Ejecutar nuevamente la clase desde línea de comandos y verificar la salida: Hello World!
+
+Ejecutar la clase desde línea de comandos enviando su nombre como parámetro y verificar la salida. Ej: Hello Pepito!
+
+![alt text](image-3.png)
+Ejecutar la clase con su nombre y apellido como parámetro. ¿Qué sucedió?
+
+Verifique cómo enviar los parámetros de forma "compuesta" para que el saludo se realice con nombre y apellido.
+
+Ejecutar nuevamente y verificar la salida en consola. Ej: Hello Pepito Perez!
+
+![alt text](image-4.png)
