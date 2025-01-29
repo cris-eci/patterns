@@ -36,7 +36,9 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
 
 Haciendo que nuestro comando quede como:
 ```yml
-mvn archetype:generate -DgroupId=edu.eci.cvds -DartifactId=Patterns -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.5 -DinteractiveMode=false
+mvn archetype:generate -DgroupId=edu.eci.cvds -DartifactId=Patterns -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.5 -DinteractiveMode=false -Dpackage=edu.eci.cvds.patterns.archetype
 ```
+
+![alt text](image.png)
 arquetipo 1.5
 -Dpackage
