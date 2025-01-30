@@ -176,5 +176,147 @@ Solo es necesario poner con un espacio los argumentos que se desean, en este cas
 ---
 ## HACER EL ESQUELETO DE LA APLICACIÓN
 
-Cree el paquete **edu.eci.cvds.patterns.shapes** y el paquete **edu.eci.cvds.patterns.shapes.concrete**
+Cree el paquete `edu.eci.cvds.patterns.shapes` y el paquete `edu.eci.cvds.patterns.shapes.concrete`
+
+
+Cree una interfaz llamada `Shape.java` en el directorio `src/main/java/edu/eci/cvds/patterns/shapes` de la siguiente manera:
+
+```java
+package edu.eci.cvds.patterns.shapes;
+
+public interface Shape {
+    public int getNumberOfEdges();
+}
+```
+
+Cree una enumeración llamada `RegularShapeType.java` en el directorio `src/main/java/edu/eci/cvds/patterns/shapes` así:
+
+```java
+package edu.eci.cvds.patterns.shapes;
+
+public enum RegularShapeType {
+    Triangle, Quadrilateral, Pentagon, Hexagon
+}
+```
+
+En el directorio `src/main/java/edu/eci/cvds/patterns/shapes/concrete` cree las diferentes clases (Triangle, Quadrilateral, Pentagon, Hexagon), que implementen la interfaz creada y retornen el número correspondiente de vértices que tiene la figura.
+
+**TRIANGLE**
+```java
+package edu.eci.cvds.patterns.shapes.concrete;
+
+import edu.eci.cvds.patterns.shapes.Shape;
+
+public class Triangle implements Shape {
+    public int getNumberOfEdges() {
+        return 3;
+    }
+}
+```
+
+**QUADRILATERAL**
+```java
+package edu.eci.cvds.patterns.shapes.concrete;
+
+import edu.eci.cvds.patterns.shapes.Shape;
+
+public class Quadrilateral implements Shape {
+    public int getNumberOfEdges() {
+        return 4;
+    }
+}
+```
+
+**PENTAGON**
+```java
+package edu.eci.cvds.patterns.shapes.concrete;
+
+import edu.eci.cvds.patterns.shapes.Shape;
+
+public class Pentagon implements Shape {
+    public int getNumberOfEdges() {
+        return 5;
+    }
+}
+```
+
+
+**HEXAGON**
+```java
+package edu.eci.cvds.patterns.shapes.concrete;
+
+import edu.eci.cvds.patterns.shapes.Shape;
+
+public class Hexagon implements Shape {
+    public int getNumberOfEdges() {
+        return 6;
+    }
+}
+```
+
+Cree el archivo `ShapeMain.java` en el directorio `src/main/java/edu/eci/cvds/patterns/shapes` con el metodo main:
+
+```java
+package edu.eci.cvds.patterns.shapes;
+
+public class ShapeMain {
+
+  public static void main(String[] args) {
+    if (args == null || args.length != 1) {
+      System.err.println("Parameter of type RegularShapeType is required.");
+      return;
+    }
+    try {
+      RegularShapeType type = RegularShapeType.valueOf(args[0]);
+      Shape shape = ShapeFactory.create(type);
+      System.out.println(
+        String.format(
+          "Successfully created a %s with %s sides.",
+          type,
+          shape.getNumberOfEdges()
+        )
+      );
+    } catch (IllegalArgumentException ex) {
+      System.err.println(
+        "Parameter '" + args[0] + "' is not a valid RegularShapeType"
+      );
+      return;
+    }
+  }
+}
+```
+
+Cree el archivo ShapeFactory.java en el directorio `src/main/java/edu/eci/cvds/patterns/shapes` implementando el patrón fábrica (Hint: https://refactoring.guru/design-patterns/catalog), haciendo uso de la instrucción switch-case de Java y usando las enumeraciones.
+
+
+```java
+package edu.eci.cvds.patterns.shapes;
+import edu.eci.cvds.patterns.shapes.concrete.*;
+
+public class ShapeFactory {
+
+    public static Shape create(RegularShapeType type) {
+        switch (type) {
+            case Triangle:
+                return new Triangle();
+            case Quadrilateral:
+                return new Quadrilateral();
+            case Pentagon:
+                return new Pentagon();
+            case Hexagon:
+                return new Hexagon();
+            default:
+                return null;
+        }
+    }
+}
+
+```
+
+Después de seguir todos los pasos, el proyecto queda con esta estructura.
+
+![alt text](assets/image-11.png)
+
+
+![alt text](assets/image-12.png)
 
