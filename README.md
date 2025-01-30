@@ -22,7 +22,8 @@ Buscar cómo se crea un proyecto maven con ayuda de los arquetipos (archetypes).
 
 1. Verificamos la versión
 
-![alt text](image.png)
+![alt text](assets/image-0.png)
+
 2. Ahora creamos el directorio con el comando proporcionado.
 
 Busque cómo ejecutar desde línea de comandos el objetivo "generate" del plugin "archetype", con los siguientes parámetros:
@@ -44,7 +45,7 @@ Haciendo que nuestro comando quede como:
 mvn archetype:generate -DgroupId=edu.eci.cvds -DartifactId=Patterns -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.5 -DinteractiveMode=false -Dpackage=edu.eci.cvds.patterns.archetype
 ```
 
-![alt text](image.png)
+![alt text](assets/image-1.png)
 
 
 ### COMPILAR Y EJECUTAR
@@ -57,7 +58,8 @@ Si maven no actualiza las dependencias utilice la opción `-U` así:
 ```sh
 $ mvn -U package
 ```
-![alt text](image-1.png)
+
+![alt text](assets/image-2.png)
 
 ---
 
@@ -93,9 +95,13 @@ mvn package
 ```yml
 mvn exec:java
 ```
-![alt text](image-2.png)
+
+![alt text](assets/image-3.png)
 
 Realice el cambio en la clase `App.java` para crear un saludo personalizado, basado en los parámetros de entrada a la aplicación. 
+
+
+![alt text](assets/image-6.png)
 
 Utilizar la primera posición del parámetro que llega al método "main" para realizar elsaludo personalizado, en caso que no sea posible, se debe mantener el saludo como se encuentra actualmente:
 
@@ -107,11 +113,14 @@ Ejecutar nuevamente la clase desde línea de comandos y verificar la salida: Hel
 
 Ejecutar la clase desde línea de comandos enviando su nombre como parámetro y verificar la salida. Ej: Hello Pepito!
 
-![alt text](image-3.png)
+
+![alt text](assets/image-4.png)
+
 Ejecutar la clase con su nombre y apellido como parámetro. ¿Qué sucedió?
 
 Verifique cómo enviar los parámetros de forma "compuesta" para que el saludo se realice con nombre y apellido.
 
 Ejecutar nuevamente y verificar la salida en consola. Ej: Hello Pepito Perez!
 
-![alt text](image-4.png)
+
+![alt text](assets/image-5.png)
