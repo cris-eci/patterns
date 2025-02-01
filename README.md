@@ -254,7 +254,7 @@ public class Hexagon implements Shape {
 }
 ```
 
-Cree el archivo `ShapeMain.java` en el directorio `src/main/java/edu/eci/cvds/patterns/shapes` con el metodo main:
+Cree el archivo `ShapeMain.java` en el directorio `src/main/java/edu/eci/cvds/patterns/shapes` con el método main:
 
 ```java
 package edu.eci.cvds.patterns.shapes;
@@ -320,3 +320,84 @@ Después de seguir todos los pasos, el proyecto queda con esta estructura.
 
 ![alt text](assets/image-12.png)
 
+## ¿Cuál fábrica hiciste? 
+
+
+
+La fábrica que implementamos fue la <b>Simple Factory</b>. 
+
+- Simple Factory:
+
+![imagen](https://github.com/PDSW-ECI/labs/assets/4140058/0788a0b7-a071-4b90-ac3f-5982289ff3b3)
+
+
+```java
+package edu.eci.cvds.patterns.shapes;
+import edu.eci.cvds.patterns.shapes.concrete.*;
+
+public class ShapeFactory {
+
+    public static Shape create(RegularShapeType type) {
+        switch (type) {
+            case Triangle:
+                return new Triangle();
+            case Quadrilateral:
+                return new Quadrilateral();
+            case Pentagon:
+                return new Pentagon();
+            case Hexagon:
+                return new Hexagon();
+            default:
+                return "null";
+        }
+    }
+}
+```
+
+Esto se debe a que se creo una un enumarable que nos permite definir los tipos de figuras a utilizar. Es decir, no van a ser añadidas más figuras dinámicamente. Esto es crucial dado que con el <b>switch-case</b> podemos definir que objeto shape vamos a instancia. 
+
+Así, tenemos:
+* Una única clase <b>ShapeFactory</b> responsable de crear todos los objetos.
+* Usamos un parámetro <i>enum RegularShapeType</i> para determinar qué objeto concreto se instancia.
+* No hay jerarquía de fábricas ni subclases involucradas en la creación.
+
+## ¿Cuál es mejor?
+La mejor fábrica depende de las necesidades del problema a resolver. Dado que estos patrones de diseños son diseñados para responder y resolver problemas que son cotidianos en el día a día de la arquitectura y desarrollo de software. Ahora, para este caso, consideramos que simple factory es la mejor opción porque:
+1. Solo necesitamos crear instancias de formas genéricas previamente definidas en el enum que no mutarán de forma dinámica. 
+2. Se centraliza la lógica de creación en el método <b>create</b> en <b>ShapeFactory</b>, dado que esta encapsula el como se instancia las formas.  Evitando la duplicación de código. 
+3. Dado el uso del <b>enum</b> como parámetro, el <b>RegularShapeType</b> garantiza que solo se pasen valores válidos a la fábrica. Y, además, los elementos del enum se usan de forma eficiente en el <b>switch-case</b> de la Simple factory.
+4. Dado los requerimientos del laboratorio, las formas geométricas serán fijas y no serán añadidas de forma dinámica, así, Simple Factory es suficiente.
+
+###  Ejecute múltiples veces la clase ShapeMain, usando el plugin exec de maven con los siguientes parámetros y verifique la salida en consola para cada una:
+Configuramos la nueva MainClass.
+```xml
+        <configuration>          
+          <mainClass>edu.eci.cvds.patterns.shapes.ShapeMain</mainClass>          
+        </configuration>
+```
+
+- Sin parámetros
+![alt text](assets/image-13.png)
+- Parámetro: qwerty
+![alt text](assets/image-14.png)
+- Parámetro: pentagon
+![alt text](assets/image-15.png)
+- Parámetro: Hexagon
+![alt text](assets/image-16.png)
+
+### ¿Cuál(es) de las anteriores instrucciones se ejecutan y funcionan correctamente y por qué?
+
+De las anteriores instrucciones, la única que se ejecuta y crea correctamente una figúra es la última instrucción. <b><i>Parámetro: Hexagon</i></b>
+```bash
+mvn exec:java -Dexec.args=Hexagon
+```
+Esto se deba a que de todas las anteriores instrucciones, esta es la única cadena de caracteres que si concuerda con uno de los valores predefinidos en el enum RegularShapeType. Si bien, también está definido Pentago, la instrucción que se nos dió no tenía la primera letra capitalizada, siendo esta
+```text
+pentagon
+```
+y la correcta, que está en el RegularShapeType es
+```text
+Pentagon
+```
+
+Las demás, así mismo, tampoco estaban definidas dentro del enum. 
