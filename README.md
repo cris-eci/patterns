@@ -354,7 +354,7 @@ public class ShapeFactory {
 }
 ```
 
-Esto se debe a que se creo una un enumarable que nos permite definir los tipos de figuras a utilizar. Es decir, no van a ser añadidas más figuras dinámicamente. Esto es crucial dado que con el <b>switch-case</b> podemos definir que objeto shape vamos a instancia. 
+Esto se debe a que se creó un enumerable que nos permite definir los tipos de figuras a utilizar. Es decir, no van a ser añadidas más figuras dinámicamente. Esto es crucial dado que con el <b>switch-case</b> podemos definir que objeto shape vamos a instanciar. 
 
 Así, tenemos:
 * Una única clase <b>ShapeFactory</b> responsable de crear todos los objetos.
@@ -387,11 +387,11 @@ Configuramos la nueva MainClass.
 
 ### ¿Cuál(es) de las anteriores instrucciones se ejecutan y funcionan correctamente y por qué?
 
-De las anteriores instrucciones, la única que se ejecuta y crea correctamente una figúra es la última instrucción. <b><i>Parámetro: Hexagon</i></b>
+De las anteriores instrucciones, la única que se ejecuta y crea correctamente una figura es la última instrucción. <b><i>Parámetro: Hexagon</i></b>
 ```bash
 mvn exec:java -Dexec.args=Hexagon
 ```
-Esto se deba a que de todas las anteriores instrucciones, esta es la única cadena de caracteres que si concuerda con uno de los valores predefinidos en el enum RegularShapeType. Si bien, también está definido Pentago, la instrucción que se nos dió no tenía la primera letra capitalizada, siendo esta
+Esto se debe a que de todas las anteriores instrucciones, esta es la única cadena de caracteres que si concuerda con uno de los valores predefinidos en el enum RegularShapeType. Si bien, también está definido Pentagon, la instrucción que se nos dió no tenía la primera letra capitalizada, siendo esta
 ```text
 pentagon
 ```
@@ -401,3 +401,12 @@ Pentagon
 ```
 
 Las demás, así mismo, tampoco estaban definidas dentro del enum. 
+
+
+## ¿Para qué sirve gitignore?
+Un archivo .gitignore en el directorio raíz del repositorio sirve para indicarle a Git qué archivos y directorios ignorar cuando se realiza una confirmación, es decir, cuando se hace 
+`git add .`, y se van a subir los archivos al repositorio central, entonces ignora la carpeta (en este caso, 
+`target`) cuando se hace push.
+
+
+![alt text](assets/image-17.png)
